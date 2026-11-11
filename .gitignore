@@ -1,0 +1,49 @@
+# --- Données : rien dans data/ n'est publié, sauf la notice -------------------
+data/**
+!data/README.md
+
+# Filets de sécurité : formats de données, où qu'ils se trouvent
+*.csv
+*.tsv
+*.xls
+*.xlsx
+*.parquet
+*.feather
+*.sqlite
+*.db
+
+# --- Résultats calculés localement -------------------------------------------
+# Les rapports peuvent contenir des statistiques dérivées de données bancaires.
+# Ne les publier qu'après autorisation explicite de divulgation.
+reports/**
+!reports/README.md
+
+# --- Secrets -----------------------------------------------------------------
+.env
+.env.*
+*.pem
+*.key
+
+# --- Python ------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# --- Modèles sérialisés ------------------------------------------------------
+models/
+*.pkl
+*.joblib
+
+# --- Power BI : fichiers pouvant embarquer des données -----------------------
+*.pbix
+*.pbix.tmp
+~$*
+
+# --- Éditeur / système -------------------------------------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

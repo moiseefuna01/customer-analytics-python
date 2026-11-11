@@ -1,0 +1,25 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - run: pip install -r requirements.txt
+      # Aucune donnée privée sur GitHub : les tests unitaires utilisent une source synthétique,
+      # puis le pipeline complet est exécuté de bout en bout sur cette source.
+      - run: pytest
+      - run: python -m src.utils.sample_data --rows 2000
+      - run: python -m src.pipeline --permutations 20
+      - run: pytest
